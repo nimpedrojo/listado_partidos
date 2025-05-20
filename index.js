@@ -56,17 +56,23 @@ async function main() {
       const partidoDiv = document.createElement('div');
       partidoDiv.className = 'partido';
       if(partido.local.includes('VENECIA')){
-        partidoDiv.innerHTML = `<div class="competicion">${partido.competicion}</div><div class="linea">
-        <div class="hora">${partido.hora}</div>
-        <div class="equipos"><p style="color:red;display: inline">${partido.local} </p><img width="20px" src="icono-vs.jpeg"><p style="color:#3283e6;display: inline"> ${partido.visitante}</p></div>
-        <div class="campo">${partido.campo}</div>
-      </div>`;
+        partidoDiv.innerHTML = `<div class="competicion">${partido.competicion}</div>
+        <div class="linea">
+          <div class="hora">${partido.hora}</div>
+          <div class="equipolocal"><p style="color:red;display: inline">${partido.local} </p></div>
+          <div class='versus'><img width="20px" src="icono-vs.jpeg"></div>
+          <div class="equipovisitante"><p style="color:#3283e6;display: inline"> ${partido.visitante}</p></div>
+          <div class="campo">${partido.campo}</div>
+        </div>`;
       }else{
-        partidoDiv.innerHTML = `<div class="competicion">${partido.competicion}</div><div class="linea">
-        <div class="hora">${partido.hora}</div>
-        <div class="equipos"><p style="color:#3283e6;display: inline">${partido.local}</p> <img width="20px" src="icono-vs.jpeg"> <p style="color:red;display: inline">${partido.visitante}</p></div>
-        <div class="campo">${partido.campo}</div>
-      </div>`;
+        partidoDiv.innerHTML = `<div class="competicion">${partido.competicion}</div>
+        <div class="linea">
+          <div class="hora">${partido.hora}</div>
+          <div class="equipolocal"><p style="color:#3283e6;display: inline">${partido.local}</p></div>
+          <div class='versus'><img width="20px" src="icono-vs.jpeg"></div>
+          <div class="equipovisitante"><p style="color:red;display: inline">${partido.visitante}</p></div>
+          <div class="campo">${partido.campo}</div>
+        </div>`;
       }
       
       contenedor.appendChild(partidoDiv);
