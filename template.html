@@ -3,50 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <style>
+    #contenedor {
+      width: 80%;
+      margin: auto;
+    }
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
     }
     .header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
     }
     .header img {
-      height: 60px;
+      height: 80px;
     }
     .title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
       margin-top: 10px;
     }
     .subtitle {
-      font-size: 16px;
+      font-size: 18px;
       margin-bottom: 20px;
     }
     .fecha {
       font-weight: bold;
-      color: #d40000;
+      color: white;
       margin-top: 20px;
       margin-bottom: 10px;
+      background-color: #767071;
     }
+    .fecha::before {
+  content: "";
+  display: inline-block;
+  background-image: url('icono-calendario.png'); /* o .svg */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.hora::before {
+  content: "";
+  display: inline-block;
+  background-image: url('icono-reloj.png'); /* o .svg */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.campo::before {
+  content: "";
+  display: inline-block;
+  background-image: url('icono-campo.jpeg'); /* o .svg */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
     .partido {
-      border: 1px solid #ccc;
-      padding: 6px;
-      margin-bottom: 5px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .hora {
-      width: 15%;
-    }
-    .equipos {
-      width: 55%;
-      text-align: center;
-    }
-    .campo {
-      width: 25%;
-      text-align: right;
-    }
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 8px;
+  }
+  .competicion {
+    text-align: center;
+    font-weight: bold;
+    color: #004080;
+    margin-bottom: 10px;
+  }
+  .linea {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+  }
+  .hora { width: 25%; }
+  .equipos { width: 50%; text-align: center;font-weight: bold; }
+  .campo { width: 25%; text-align: right; }
+    
   </style>
 </head>
 <body>

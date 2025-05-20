@@ -1,6 +1,6 @@
 export function parsePartidos($) {
     const partidos = [];
-    
+    var competicion='';
     // Seleccionamos la tabla principal de partidos
     const table = $('table.table-striped.table-light');
 
@@ -11,6 +11,7 @@ export function parsePartidos($) {
     theads.each((i, thead) => {
         const $thead = $(thead);
         const dateRow = $thead.find('tr').first();
+        competicion=dateRow.next().find('th').first().next().text().split("Grupo")[0].replace(",","");
         const dateText = dateRow.find('span.font_responsive').text().trim();
         const currentDate = dateText.split(',')[0];
 
@@ -19,20 +20,24 @@ export function parsePartidos($) {
             
             const cells = $(row).find('td');
             if (cells.length > 5) {
-                // Celda 1: equipos (local <br> visitante)
                 const equiposHtml = cells.eq(1).html() || '';
                 const equiposText = equiposHtml.replace(/<br\s*\/?>/gi, ' vs ').replace(/&nbsp;/g, '').trim();
-                // Celda 4: campo
+                const equipoLocal= equiposText.split('vs')[0].trim();
+                const equipoVisitante= equiposText.split('vs')[1].trim();
                 const campo = cells.eq(4).text().trim();
-                // Celda 5: hora
                 const hora = cells.eq(5).text().trim();
                 if (hora != 'Resultado'){
                     partidos.push({
                         fecha: currentDate,
                         hora,
                         campo,
-                        equipos: equiposText                        
+                        local:equipoLocal,
+                        visitante:equipoVisitante,
+                        equipos: equiposText,
+                        competicion:competicion                        
                     });
+                } else {
+                    competicion = cells.eq(1).text().split("Grupo")[0].replace(",","");
                 }
                 
             }
