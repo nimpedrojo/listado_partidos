@@ -1,10 +1,8 @@
 export function parsePartidos($) {
-    const partidos = [];
-    var competicion='';
-    // Seleccionamos la tabla principal de partidos
-    const table = $('table.table-striped.table-light');
 
-    // Recorremos cada bloque de fecha: thead + tbody
+    var competicion='';
+    const partidos = [];
+    const table = $('table.table-striped.table-light');
     const theads = table.find('thead');
     const tbodies = table.find('tbody');
 
@@ -14,11 +12,11 @@ export function parsePartidos($) {
         competicion=dateRow.next().find('th').first().next().text().split("Grupo")[0].replace(",","");
         const dateText = dateRow.find('span.font_responsive').text().trim();
         const currentDate = dateText.split(',')[0];
-
         const $tbody = $(tbodies[i]);
+
         $tbody.find('tr').each((_, row) => {
-            
             const cells = $(row).find('td');
+
             if (cells.length > 5) {
                 const equiposHtml = cells.eq(1).html() || '';
                 const equiposText = equiposHtml.replace(/<br\s*\/?>/gi, ' vs ').replace(/&nbsp;/g, '').trim();
@@ -26,20 +24,12 @@ export function parsePartidos($) {
                 const equipoVisitante= equiposText.split('vs')[1].trim();
                 const campo = cells.eq(4).text().trim();
                 const hora = cells.eq(5).text().trim();
+
                 if (hora != 'Resultado'){
-                    partidos.push({
-                        fecha: currentDate,
-                        hora,
-                        campo,
-                        local:equipoLocal,
-                        visitante:equipoVisitante,
-                        equipos: equiposText,
-                        competicion:competicion                        
-                    });
+                    partidos.push({fecha: currentDate,hora,campo,local:equipoLocal,visitante:equipoVisitante,equipos: equiposText,competicion:competicion});
                 } else {
                     competicion = cells.eq(1).text().split("Grupo")[0].replace(",","");
                 }
-                
             }
         });
     });
