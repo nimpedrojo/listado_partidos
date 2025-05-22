@@ -3,6 +3,7 @@ import {APIConstants} from './utils/constants.js';
 import fs from 'fs';
 import { parsePartidos } from './utils/parsePartidos.js';
 import { JSDOM } from 'jsdom';
+import open from 'open';
 
 async function main() {
 
@@ -80,7 +81,9 @@ async function main() {
   }
 
   fs.writeFileSync('./output/preview.html', dom.serialize());
+  
   console.log("Archivo HTML generado. Ábrelo en navegador y se exportara como PDF.");
+  open('./output/preview.html');
 }
 
 main();
