@@ -81,5 +81,8 @@
   .equipolocal { width: 20%; text-align: center;font-weight: bold; }
   .equipovisitante { width: 20%; text-align: center;font-weight: bold; }
   .versus { width: 10%; text-align: center;font-weight: bold; }
+  .versus img {width: 20px}
   .campo { width: 25%; text-align: right; }
+  .venecia p {color:red;display: inline}
+  .rival p {color:#3283e6;display: inline}
     
