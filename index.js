@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+import {APIConstants} from './utils/constants.js';
 import fs from 'fs';
 import { parsePartidos } from './utils/parsePartidos.js';
 import { jsPDF } from 'jspdf';
@@ -19,13 +20,13 @@ async function main() {
   await page.goto(URL, { waitUntil: 'networkidle2' });
 
   try {
-    await page.click('button#btnAceptar'); 
+    await page.click(APIConstants.BUTTON_COOKIES); 
     await page.waitForTimeout(1000);
   } catch {
-    console.log('No se encontró el botón de aceptar cookies.');
+    console.log(APIConstants.MESSAGE_NO_COOKIES);
   }
 
-  await page.waitForSelector('.table-striped');
+  await page.waitForSelector(APIConstants.TABLE_SELECTOR);
 
   const html = await page.content();
   await browser.close();
