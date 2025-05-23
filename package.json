@@ -2,10 +2,15 @@
     "name": "partidos-fetcher",
     "version": "1.0.0",
     "description": "Extrae partidos desde FutbolAragon y genera un PDF",
-    "main": "index.js",
+    "main": "electron/main.js",
     "type": "module",
+    "bin": {
+        "listado-partidos": "./index.js"
+    },
     "scripts": {
-        "start": "node index.js 2025-05-22 2025-05-25"
+        "cli": "node index.js",
+        "gui": "npm run start:gui",
+        "test": "jest"
     },
     "dependencies": {
         "axios": "^1.6.0",
@@ -15,5 +20,11 @@
         "jspdf": "^2.5.2",
         "open": "^10.1.2",
         "puppeteer": "^24.8.2"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.2",
+        "electron": "^36.3.1",
+        "electron-builder": "^26.0.12",
+        "wait-on": "^8.0.3"
     }
 }
