@@ -2,12 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Electron (Main)",
       "type": "node",
       "request": "launch",
-      "name": "Iniciar programa",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/index.js",
-      "args":["2025-05-22", "2025-05-25"]
+      "program": "${workspaceFolder}/electron/main.js",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      },
+      "cwd": "${workspaceFolder}",
+      "env": { "NODE_ENV": "dev" },
+      "outputCapture": "std"
     }
   ]
 }
