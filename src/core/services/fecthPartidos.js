@@ -11,7 +11,7 @@ export default async function obtenerPartidos(desde, hasta) {
     const url = APIConstants.URL_FEDERACION + `&Sch_Fecha_Desde=${desde}&Sch_Fecha_Desde_input=${desdeinput}&Sch_Fecha_Hasta=${hasta}&Sch_Fecha_Hasta_input=${hastainput}`;
     const browser = await puppeteer.launch({
         executablePath: resolveChrome(),
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage','--disable-blink-features=AutomationControlled','--window-size=1366,768'],
         headless: 'new'          // recomendado desde Puppeteer v22
     });
     const page = await browser.newPage();
