@@ -1,30 +1,33 @@
 {
-    "name": "partidos-fetcher",
-    "version": "1.0.0",
-    "description": "Extrae partidos desde FutbolAragon y genera un PDF",
-    "main": "electron/main.js",
-    "type": "module",
-    "bin": {
-        "listado-partidos": "./index.js"
-    },
-    "scripts": {
-        "cli": "node index.js",
-        "gui": "npm run start:gui",
-        "test": "jest"
-    },
-    "dependencies": {
-        "axios": "^1.6.0",
-        "cheerio": "^1.0.0-rc.12",
-        "html2canvas": "^1.4.1",
-        "jsdom": "^26.1.0",
-        "jspdf": "^2.5.2",
-        "open": "^10.1.2",
-        "puppeteer": "^24.8.2"
-    },
-    "devDependencies": {
-        "concurrently": "^9.1.2",
-        "electron": "^36.3.1",
-        "electron-builder": "^26.0.12",
-        "wait-on": "^8.0.3"
-    }
+  "name": "listado-partidos-api",
+  "version": "1.0.0",
+  "description": "Backend Node.js que expone /api/listado?inicio=YYYY-MM-DD&fin=YYYY-MM-DD y devuelve el HTML con el listado de partidos.",
+  "type": "module",
+  "main": "src/server/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "nodemon src/server/index.js",
+    "start": "node src/server/index.js",
+    "test": "echo \"(sin tests aún)\" && exit 0"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "express": "^4.19.2",
+    "puppeteer": "^24.8.2",
+    "jsdom": "^26.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3"
+  },
+  "keywords": [
+    "fútbol",
+    "partidos",
+    "api",
+    "node",
+    "express"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT"
 }
