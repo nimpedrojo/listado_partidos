@@ -25,11 +25,11 @@ export default async function obtenerPartidos(desde, hasta) {
     } catch {
         console.log(APIConstants.MESSAGE_NO_COOKIES);
     }
-
-    await page.waitForSelector(APIConstants.TABLE_SELECTOR, { timeout: 45000 });
+    const htmltest = await page.content();
+    console.log(htmltest.slice(0, 500)); 
+    await page.waitForSelector(APIConstants.TABLE_SELECTOR, { timeout: 60000 });
 
     const html = await page.content();
-    console.log(html.slice(0, 500)); 
     await browser.close();
     const cheerio = await import('cheerio');
     const $ = cheerio.load(html);
