@@ -15,7 +15,7 @@ export default async function obtenerPartidos(desde, hasta) {
     );
 
     const url = `https://api.scraperapi.com?api_key=${process.env.SCRAPERAPI_KEY}` +
-                `&url=${target}&render=true&jsSnippet=${js}`;
+                `&url=${target}&render=true&wait_for_selector=cmpboxbtn%20cmpboxbtnyes%20cmptxt_btn_yes`;
     
 
     const html = await fetch(url).then(r => r.text());
