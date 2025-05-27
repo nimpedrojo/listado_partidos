@@ -15,8 +15,13 @@ export default async function obtenerPartidos(desde, hasta) {
         headless: 'new'          // recomendado desde Puppeteer v22
     });
     const page = await browser.newPage();
-    
-    await page.goto(url, { waitUntil: 'networkidle2',timeout: 0 });
+    page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+    page.on('console', msg => console.log('[browser]', msg.text()));
+    page.on('requestfailed', r => console.log('❌ FAIL', r.url(), r.failure()?.errorText));
+    page.on('response', res => {
+    if (res.status() >= 400) console.log('HTTP', res.status(), res.url());
+    });
+    await page.goto(url, { waitUntil: 'networkidle2',timeout: 60000 });
     try {
         await page.click(APIConstants.BUTTON_COOKIES); 
         await page.waitForTimeout(1000);
