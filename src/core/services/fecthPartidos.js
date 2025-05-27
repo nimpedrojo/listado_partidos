@@ -16,13 +16,12 @@ export default async function obtenerPartidos(desde, hasta) {
     });
     const page = await browser.newPage();
     
-    await page.goto(url, { waitUntil: 'networkidle2' });
+    await page.goto(url, { waitUntil: 'networkidle2',timeout: 0 });
     try {
         await page.click(APIConstants.BUTTON_COOKIES); 
         await page.waitForTimeout(1000);
     } catch {
         console.log(APIConstants.MESSAGE_NO_COOKIES);
-        await page.waitForTimeout(0);
     }
     if (process.env.DEBUG_SCRAPER) {
         await page.screenshot({ path: '/tmp/render_capture.png', fullPage: true });
