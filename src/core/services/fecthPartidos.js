@@ -8,7 +8,6 @@ export default async function obtenerPartidos(desde, hasta) {
     const hastainput = hasta.split('-').reverse().join('-');
   
     const url = APIConstants.URL_FEDERACION + `&Sch_Fecha_Desde=${desde}&Sch_Fecha_Desde_input=${desdeinput}&Sch_Fecha_Hasta=${hasta}&Sch_Fecha_Hasta_input=${hastainput}`;
-    console.log(url);
     const browser = await puppeteer.launch({
         executablePath: process.env.CHROME_BIN || '/app/.chrome-for-testing/chrome-linux64/chrome',
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -27,6 +26,7 @@ export default async function obtenerPartidos(desde, hasta) {
     await page.waitForSelector(APIConstants.TABLE_SELECTOR, { timeout: 45000 });
 
     const html = await page.content();
+    console.log(html.slice(0, 500)); 
     await browser.close();
     const cheerio = await import('cheerio');
     const $ = cheerio.load(html);
