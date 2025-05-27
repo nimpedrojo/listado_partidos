@@ -39,7 +39,7 @@ export default async function obtenerPartidos(desde, hasta) {
         const url = `http://api.scraperapi.com?api_key=${apiKey}&url=${target}`;
 
         const html = await fetch(url).then(r => r.text());
-    await browser.close();
+
     const cheerio = await import('cheerio');
     const $ = cheerio.load(html);
     const partidos = parsePartidos($);
