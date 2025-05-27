@@ -23,7 +23,11 @@ export default async function obtenerPartidos(desde, hasta) {
     } catch {
         console.log(APIConstants.MESSAGE_NO_COOKIES);
     }
-    
+    if (process.env.DEBUG_SCRAPER) {
+        await page.screenshot({ path: '/tmp/render_capture.png', fullPage: true });
+        const raw = await page.content();
+        console.log('--- PRIMEROS 400 CHARS ---\n', raw.slice(0, 400));
+    }
     await page.waitForSelector(APIConstants.TABLE_SELECTOR, { timeout: 120000 });
 
     const html = await page.content();
