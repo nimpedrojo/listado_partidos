@@ -25,9 +25,8 @@ export default async function obtenerPartidos(desde, hasta) {
     } catch {
         console.log(APIConstants.MESSAGE_NO_COOKIES);
     }
-    const htmltest = await page.content();
-    console.log(htmltest.slice(0, 500)); 
-    await page.waitForSelector(APIConstants.TABLE_SELECTOR, { timeout: 60000 });
+    
+    await page.waitForSelector(APIConstants.TABLE_SELECTOR, { timeout: 15000 });
 
     const html = await page.content();
     await browser.close();
