@@ -8,8 +8,8 @@ export default async function obtenerPartidos(desde, hasta) {
     const desdeinput = desde.split('-').reverse().join('-');
     const hastainput = hasta.split('-').reverse().join('-');
   
-    const url = APIConstants.URL_FEDERACION + `&Sch_Fecha_Desde=${desde}&Sch_Fecha_Desde_input=${desdeinput}&Sch_Fecha_Hasta=${hasta}&Sch_Fecha_Hasta_input=${hastainput}`;
-    const browser = await launchBrowser();
+    const urlfaf = APIConstants.URL_FEDERACION + `&Sch_Fecha_Desde=${desde}&Sch_Fecha_Desde_input=${desdeinput}&Sch_Fecha_Hasta=${hasta}&Sch_Fecha_Hasta_input=${hastainput}`;
+    /*const browser = await launchBrowser();
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
     
@@ -33,7 +33,12 @@ export default async function obtenerPartidos(desde, hasta) {
     }
     await page.waitForSelector(APIConstants.TABLE_SELECTOR, { timeout: 120000 });
 
-    const html = await page.content();
+    const html = await page.content();*/
+    const apiKey = process.env.SCRAPERAPI_KEY;
+        const target = encodeURIComponent(urlfaf);
+        const url = `http://api.scraperapi.com?api_key=${apiKey}&url=${target}`;
+
+        const html = await fetch(url).then(r => r.text());
     await browser.close();
     const cheerio = await import('cheerio');
     const $ = cheerio.load(html);
