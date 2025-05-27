@@ -8,9 +8,15 @@ export default async function obtenerPartidos(desde, hasta) {
   
     const urlfaf = APIConstants.URL_FEDERACION + `&Sch_Fecha_Desde=${desde}&Sch_Fecha_Desde_input=${desdeinput}&Sch_Fecha_Hasta=${hasta}&Sch_Fecha_Hasta_input=${hastainput}`;
    
-    const apiKey = process.env.SCRAPERAPI_KEY;
+    //const apiKey = process.env.SCRAPERAPI_KEY;
     const target = encodeURIComponent(urlfaf);
-    const url = `http://api.scraperapi.com?api_key=${apiKey}&url=${target}`;
+    const js = encodeURIComponent(
+        'document.querySelector("#cmptxt_btn_yes")?.click();'
+    );
+
+    const url = `https://api.scraperapi.com?api_key=${process.env.SCRAPERAPI_KEY}` +
+                `&url=${target}&render=true&jsSnippet=${js}`;
+    
 
     const html = await fetch(url).then(r => r.text());
     if (process.env.DEBUG_SCRAPER) {
