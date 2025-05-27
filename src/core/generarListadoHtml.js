@@ -8,5 +8,6 @@ export default async function generarListadoHtml(desdeISO, hastaISO) {
   const partidos = await obtenerPartidos(desdeISO, hastaISO);
   const tabla    = renderTabla(partidos);
   const listadoHTML = htmlTemplate(desdeISO, hastaISO, tabla);
+  console.log('Listado HTML generado correctamente');
   return listadoHTML;
 }
