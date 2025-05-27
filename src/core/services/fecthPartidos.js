@@ -16,11 +16,33 @@ export default async function obtenerPartidos(desde, hasta) {
     });
     const page = await browser.newPage();
     page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
-    page.on('console', msg => console.log('[browser]', msg.text()));
-    page.on('requestfailed', r => console.log('❌ FAIL', r.url(), r.failure()?.errorText));
-    page.on('response', res => {
-    if (res.status() >= 400) console.log('HTTP', res.status(), res.url());
-    });
+   console.log('🟢 DEBUG_SCRAPER activo');
+
+page.on('console', msg => console.log('[browser]', msg.text()));
+page.on('requestfailed', r => console.log('❌', r.url(), r.failure()?.errorText));
+page.on('response', res => {
+  if (res.status() >= 400) console.log('HTTP', res.status(), res.url());
+});
+
+console.log('➡️  Antes de page.goto');
+let navResponse;
+try {
+  navResponse = await page.goto(url, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000          // 60 s
+  });
+  console.log('✅  page.goto terminó   status:', navResponse?.status());
+} catch (e) {
+  console.log('💥  page.goto lanzó excepción:', e.message);
+  throw e;                  // re-lanzamos para que tu flujo actual detecte error
+}
+
+console.log('➡️  Antes de screenshot');
+await page.screenshot({ path: '/tmp/render.png' });
+
+const raw = await page.content();
+console.log('LONGITUD html', raw.length);
+console.log('MUESTRA 400:', raw.slice(0, 400));
     await page.goto(url, { waitUntil: 'networkidle2',timeout: 60000 });
     try {
         await page.click(APIConstants.BUTTON_COOKIES); 
