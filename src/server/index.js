@@ -2,7 +2,11 @@ import express from 'express';
 import generarListadoHtml from '../core/generarListadoHtml.js';
 
 const app = express();
-
+if (process.env.DEBUG_SCRAPER) {
+  app.get('/debug/screenshot', (req, res) => {
+    res.sendFile('/tmp/render.png');
+  });
+}
 app.get('/api/listado', async (req, res) => {
   const { inicio, fin } = req.query;       // ISO YYYY-MM-DD
 
