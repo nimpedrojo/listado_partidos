@@ -1,18 +1,40 @@
 {
   "version": "0.2.0",
   "configurations": [
+    /*  A · Ejecución directa (sin Nodemon) --------------------------- */
     {
-      "name": "Electron (Main)",
+      "name": "API – Debug",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/electron/main.js",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
-      "windows": {
-        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
-      },
+      "program": "${workspaceFolder}/src/server/index.js",
       "cwd": "${workspaceFolder}",
       "env": { "NODE_ENV": "dev" },
-      "outputCapture": "std"
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeArgs": ["--trace-warnings"],          // opcional
+      "outFiles": []
+    },
+
+    /*  B · Con Nodemon (auto-recarga + breakpoints) ------------------ */
+    {
+      "name": "API – Debug (nodemon)",
+      "type": "node",
+      "request": "launch",
+      /*  Ejecutamos “nodemon … --inspect” mediante npm  */
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--inspect"],
+      "restart": true,                  // re-anexa al recargar nodemon
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+
+    /*  C · Adjuntarse a un proceso ya lanzado ------------------------ */
+    {
+      "name": "Adjuntar a puerto 9229",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": false,
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }
