@@ -11,7 +11,7 @@ export default async function obtenerPartidos(desde, hasta) {
     const url = APIConstants.URL_FEDERACION + `&Sch_Fecha_Desde=${desde}&Sch_Fecha_Desde_input=${desdeinput}&Sch_Fecha_Hasta=${hasta}&Sch_Fecha_Hasta_input=${hastainput}`;
     const browser = await puppeteer.launch({
         executablePath: resolveChrome(),
-        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage','--disable-blink-features=AutomationControlled','--window-size=1366,768'],
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage','--disable-blink-features=AutomationControlled','--window-size=1366,768','--disable-gpu', '--disable-software-rasterizer'],
         headless: 'new'          // recomendado desde Puppeteer v22
     });
     const page = await browser.newPage();
@@ -22,6 +22,7 @@ export default async function obtenerPartidos(desde, hasta) {
         await page.waitForTimeout(1000);
     } catch {
         console.log(APIConstants.MESSAGE_NO_COOKIES);
+        await page.waitForTimeout(0);
     }
     if (process.env.DEBUG_SCRAPER) {
         await page.screenshot({ path: '/tmp/render_capture.png', fullPage: true });
