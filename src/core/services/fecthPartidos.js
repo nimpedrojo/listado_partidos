@@ -10,12 +10,10 @@ export default async function obtenerPartidos(desde, hasta) {
    
     //const apiKey = process.env.SCRAPERAPI_KEY;
     const target = encodeURIComponent(urlfaf);
-    const js = encodeURIComponent(
-        'document.querySelector("#cmptxt_btn_yes")?.click();'
-    );
+    
 
     const url = `https://api.scraperapi.com?api_key=${process.env.SCRAPERAPI_KEY}` +
-                `&url=${target}&render=true&wait_for_selector=cmpboxbtn%20cmpboxbtnyes%20cmptxt_btn_yes`;
+                `&url=${target}&render=true&keep_headers=true&block_resources=true&wait_for_selector=cmpboxbtn%20cmpboxbtnyes%20cmptxt_btn_yes`;
     
 
     const html = await fetch(url).then(r => r.text());
