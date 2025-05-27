@@ -5,7 +5,9 @@ export function parsePartidos($) {
     const table = $('table.table-striped.table-light');
     const theads = table.find('thead');
     const tbodies = table.find('tbody');
-
+    if(process.env.DEBUG_SCRAPER) {
+        console.log(theads);    
+    }
     theads.each((i, thead) => {
         const $thead = $(thead);
         const dateRow = $thead.find('tr').first();
