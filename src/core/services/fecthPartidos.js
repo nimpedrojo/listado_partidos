@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 import {APIConstants} from '../utils/constants.js';
 import { parsePartidos } from '../utils/parsePartidos.js';
 
