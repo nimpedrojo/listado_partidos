@@ -12,7 +12,7 @@ export default async function obtenerPartidos(desde, hasta) {
     const browser = await puppeteer.launch({
         executablePath: resolveChrome(),
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage','--disable-blink-features=AutomationControlled','--window-size=1366,768','--disable-gpu', '--disable-software-rasterizer'],
-        headless: 'new'          // recomendado desde Puppeteer v22
+        headless: 'shell'          // recomendado desde Puppeteer v22
     });
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
