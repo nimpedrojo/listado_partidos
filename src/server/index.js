@@ -2,7 +2,11 @@ import express from 'express';
 import generarListadoHtml from '../core/generarListadoHtml.js';
 
 const app = express();
-
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');     // <-- clave
+  res.setHeader('Access-Control-Allow-Methods', 'GET'); // (opcional)
+  next();
+});
 app.get('/api/listado', async (req, res) => {
   const { inicio, fin } = req.query;       // ISO YYYY-MM-DD
 
