@@ -14,8 +14,7 @@ app.get('/api/listado', async (req, res) => {
     return res.status(400)
               .send('Parámetros ?inicio=AAAA-MM-DD&fin=AAAA-MM-DD obligatorios');
 
-  if (fin < inicio)
-    return res.status(400).send('La fecha fin debe ser >= inicio');
+ 
 
   try {
     const html = await generarListadoHtml(inicio, fin);
