@@ -1,0 +1,26 @@
+{
+  "name": "listadopartidos",
+  "description": "API Node que genera el HTML con el listado de partidos.",
+  "stack": "heroku-22",
+
+  "buildpacks": [
+    { "url": "heroku/nodejs" },
+    { "url": "heroku-community/chrome-for-testing" }
+  ],
+
+  
+  "env": {
+    "NODE_ENV": "production"
+  },
+  
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"          
+    }
+  },
+
+  "scripts": {
+    "postdeploy": "echo '🚀  Deploy completado'"
+  }
+}
