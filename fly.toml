@@ -4,7 +4,7 @@
 #
 
 app = 'listado-back'
-primary_region = 'mad'
+primary_region = 'cdg'
 
 [build]
   dockerfile = 'Dockerfile'
